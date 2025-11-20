@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Recommended Pens</h1>
+    <style>
+        .thumb { width: 60px; height: auto; display: block; }
+        table img { object-fit: contain; }
+    </style>
+    <script>
+    document.addEventListener('DOMContentLoaded', function(){
+        const table = document.querySelector('table');
+        if (!table) return;
+        const thead = table.tHead;
+        const tbody = table.tBodies[0];
+        const headerRow = thead.rows[0];
+        const imgTh = document.createElement('th');
+        imgTh.scope = 'col';
+        imgTh.textContent = 'Image';
+        headerRow.insertBefore(imgTh, headerRow.firstChild);
+        const brandToImage = {
+            'Pilot':'images/pilot-g2.jpg',
+            'Uni-ball':'images/uni-ball-jetstream.jpg',
+            'Sakura':'images/sakura-pigma.jpg',
+            'Zebra':'images/zebra-f701.jpg',
+            'Staedtler':'images/staedtler-triplus.jpg'
+        };
+        for (const row of Array.from(tbody.rows)) {
+            const brand = row.cells[0].textContent.trim();
+            const src = brandToImage[brand] || 'images/placeholder.png';
+            const td = document.createElement('td');
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = brand + ' image';
+            img.className = 'thumb';
+            td.appendChild(img);
+            row.insertBefore(td, row.firstChild);
+        }
+    });
+    </script>
+    <table border="1" cellpadding="6" cellspacing="0">
+        <caption><strong>Pen Recommendations</strong></caption>
+        <thead>
+            <tr>
+                <th scope="col">Brand</th>
+                <th scope="col">Model</th>
+                <th scope="col">Type</th>
+                <th scope="col">Tip</th>
+                <th scope="col">Ink Color</th>
+                <th scope="col">Price (USD)</th>
+                <th scope="col">Best For</th>
+                <th scope="col">Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Pilot</td>
+                <td>G2</td>
+                <td>Gel</td>
+                <td>0.7 mm</td>
+                <td>Black</td>
+                <td>$2.50</td>
+                <td>Everyday writing</td>
+                <td>4.7/5</td>
+            </tr>
+            <tr>
+                <td>Uni-ball</td>
+                <td>Jetstream</td>
+                <td>Hybrid</td>
+                <td>0.7 mm</td>
+                <td>Blue</td>
+                <td>$3.00</td>
+                <td>Fast-drying notes</td>
+                <td>4.6/5</td>
+            </tr>
+            <tr>
+                <td>Sakura</td>
+                <td>Pigma Micron</td>
+                <td>Fineliner</td>
+                <td>0.5 mm</td>
+                <td>Black</td>
+                <td>$3.50</td>
+                <td>Sketching & archival</td>
+                <td>4.8/5</td>
+            </tr>
+            <tr>
+                <td>Zebra</td>
+                <td>F-701</td>
+                <td>Ballpoint</td>
+                <td>0.7 mm</td>
+                <td>Black</td>
+                <td>$5.00</td>
+                <td>Durability / metal body</td>
+                <td>4.4/5</td>
+            </tr>
+            <tr>
+                <td>Staedtler</td>
+                <td>Triplus Fineliner</td>
+                <td>Fineliner</td>
+                <td>0.3 mm</td>
+                <td>Assorted</td>
+                <td>$2.20</td>
+                <td>Note-taking & color coding</td>
+                <td>4.5/5</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
